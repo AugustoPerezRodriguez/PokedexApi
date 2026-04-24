@@ -1,7 +1,7 @@
 import express from "express";  
 import cors from "cors";     
 
-import { getPokemon, getPokemons } from "./modules/Pokedex.js";
+import { getPokemon, getPokemons, getPokemonByType } from "./modules/Pokedex.js";
 
 const app = express();
 const port = 3000;
@@ -22,7 +22,7 @@ app.get("/pokemon/:nombre", async (req, res) => {
 
     res.status(200).send(pokemon);
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(404).send({ error: error.message });
   }
 });
 
@@ -33,7 +33,7 @@ app.get("/pokemon/:id", async(req,res)=> {
         res.status(200).send(pokemon)
     }
     catch(error){
-        res.status(500).json({error:error.message });
+        res.status(500).send({error:error.message });
     }
 })
 
@@ -44,9 +44,21 @@ app.get("/pokemons", async (req, res) => {
 
     const lista = await getPokemons(limit, offset);
 
-    res.status(200).json(lista);
+    res.status(200).send(lista);
   } catch (error) {
-    res.status(500).json({ error: "Error al obtener la lista" });
+    res.status(500).send({ error: "Error al obtener la lista" });
+  }
+});
+
+app.get("/tipo/:tipo", async (req, res) => {
+  try {
+    const tipo = req.params.tipo.toLowerCase();
+
+    const lista = await getPokemonByType(tipo);
+
+    res.status(200).send(lista);
+  } catch (error) {
+    res.status(404).send({ error: "Tipo no encontrado" });
   }
 });
 

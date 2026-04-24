@@ -47,4 +47,16 @@ async function getPokemons(limit, offset) {
 
   return res.data.results;
 }
-export { getPokemon, getPokemonXId, getPokemons};
+
+async function getPokemonByType(tipo) {
+  const res = await axios.get(
+    `https://pokeapi.co/api/v2/type/${tipo}`,
+    { httpsAgent: agent }
+  );
+
+  const data = res.data;
+
+  return data.pokemon.map(p => p.pokemon.name);
+}
+
+export { getPokemon, getPokemonXId, getPokemons, getPokemonByType};
