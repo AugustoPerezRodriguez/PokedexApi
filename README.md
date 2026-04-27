@@ -1,7 +1,6 @@
 "# PokedexApi" 
 Cómo se dedujo la estructura de las URLs
-La estructura de las URLs se definió a partir del análisis de la documentación oficial de PokéAPI. A partir de allí se identificaron los endpoints principales que ofrece la API externa:
-
+La estructura fue deducida analizando las respuestas de la API en el navegador y en herramientas como Postman, identificando patrones en las rutas y los parámetros utilizados.
 
 /pokemon/{id o nombre}: permite obtener la información de un Pokémon específico.
 
