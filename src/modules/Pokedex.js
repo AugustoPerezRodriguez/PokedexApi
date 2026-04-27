@@ -16,6 +16,7 @@ async function getPokemon(nombre) {
   return {
     nombre: data.name,
     peso: data.weight,
+    altura: data.height,
     tipos: data.types.map(t => t.type.name),
     imagen: data.sprites.front_default
   };
@@ -60,3 +61,4 @@ async function getPokemonByType(tipo) {
 }
 
 export { getPokemon, getPokemonXId, getPokemons, getPokemonByType};
+
